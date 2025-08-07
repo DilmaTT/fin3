@@ -195,7 +195,8 @@ export const PokerMatrix = ({ selectedHands, onHandSelect, activeAction, actionB
   };
 
   const parentContainerClasses = cn(
-    "space-y-4 p-4 rounded-lg",
+    "space-y-4 rounded-lg",
+    isMobile ? "px-[1%] py-[1%]" : "p-4",
     isBackgroundMode ? "w-full h-full flex items-center justify-center" : "w-full",
     getMatrixBackgroundClass()
   );

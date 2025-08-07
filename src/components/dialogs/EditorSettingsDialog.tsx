@@ -42,16 +42,16 @@ export const EditorSettingsDialog = ({ isOpen, onOpenChange, isMobileMode }: Edi
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className={cn("max-h-[90dvh] overflow-y-auto", isMobileMode && "h-full max-h-full")} mobileFullscreen={isMobileMode}>
+      <DialogContent className={cn("max-h-[90dvh] overflow-y-auto sm:max-w-sm", isMobileMode && "h-full max-h-full")} mobileFullscreen={isMobileMode}>
         <DialogHeader>
           <DialogTitle>Настройки редактора</DialogTitle>
           <DialogDescription>
             Настройте внешний вид редактора диапазонов.
           </DialogDescription>
         </DialogHeader>
-        <div className="py-4 space-y-8">
+        <div className="py-1 space-y-6">
           {/* Matrix Background */}
-          <div className="space-y-4">
+          <div className="space-y-3">
             <h3 className="text-lg font-medium">Фон за матрицей</h3>
             <RadioGroup
               value={editorSettings.matrixBackgroundColor.type}
@@ -65,7 +65,7 @@ export const EditorSettingsDialog = ({ isOpen, onOpenChange, isMobileMode }: Edi
               <div className="flex items-center space-x-2"><RadioGroupItem value="custom" id="bg-custom" /><Label htmlFor="bg-custom">На выбор</Label></div>
             </RadioGroup>
             {editorSettings.matrixBackgroundColor.type === 'custom' && (
-              <div className="flex items-center gap-4 pl-6 pt-2">
+              <div className="flex items-center gap-4 pl-6 pt-1.5">
                 <Label htmlFor="custom-bg-color-picker" className="sr-only">Выбор цвета</Label>
                 <Input id="custom-bg-color-picker" type="color" className="p-0 h-10 w-10 cursor-pointer rounded-md border-none"
                   value={editorSettings.matrixBackgroundColor.customColor}
@@ -77,7 +77,7 @@ export const EditorSettingsDialog = ({ isOpen, onOpenChange, isMobileMode }: Edi
           </div>
 
           {/* Cell Background */}
-          <div className="space-y-4">
+          <div className="space-y-3">
             <h3 className="text-lg font-medium">Фон ячеек матрицы</h3>
             <RadioGroup
               value={editorSettings.cellBackgroundColor.type}
@@ -91,7 +91,7 @@ export const EditorSettingsDialog = ({ isOpen, onOpenChange, isMobileMode }: Edi
               <div className="flex items-center space-x-2"><RadioGroupItem value="custom" id="color-custom" /><Label htmlFor="color-custom">На выбор</Label></div>
             </RadioGroup>
             {editorSettings.cellBackgroundColor.type === 'custom' && (
-              <div className="flex items-center gap-4 pl-6 pt-2">
+              <div className="flex items-center gap-4 pl-6 pt-1.5">
                 <Label htmlFor="custom-color-picker" className="sr-only">Выбор цвета</Label>
                 <Input id="custom-color-picker" type="color" className="p-0 h-10 w-10 cursor-pointer rounded-md border-none"
                   value={editorSettings.cellBackgroundColor.customColor}
@@ -103,7 +103,7 @@ export const EditorSettingsDialog = ({ isOpen, onOpenChange, isMobileMode }: Edi
           </div>
 
           {/* Cell Border Radius */}
-          <div className="space-y-4">
+          <div className="space-y-3">
             <h3 className="text-lg font-medium">Скругление ячеек</h3>
             <RadioGroup
               value={editorSettings.cellBorderRadius}
@@ -118,9 +118,9 @@ export const EditorSettingsDialog = ({ isOpen, onOpenChange, isMobileMode }: Edi
           </div>
 
           {/* Font Settings */}
-          <div className="space-y-4">
+          <div className="space-y-3">
             <h3 className="text-lg font-medium">Шрифт ячеек</h3>
-            <div className="space-y-4">
+            <div className="space-y-3">
               <Label>Размер</Label>
               <RadioGroup value={editorSettings.font.size} onValueChange={(size: EditorSettings['font']['size']) => handleUpdateFontSetting('size', size)}
                 className="flex flex-wrap gap-4"
@@ -132,7 +132,7 @@ export const EditorSettingsDialog = ({ isOpen, onOpenChange, isMobileMode }: Edi
                 <div className="flex items-center space-x-2"><RadioGroupItem value="custom" id="font-custom" /><Label htmlFor="font-custom">Свой</Label></div>
               </RadioGroup>
               {editorSettings.font.size === 'custom' && (
-                <div className="flex items-center gap-4 pl-6 pt-2">
+                <div className="flex items-center gap-4 pl-6 pt-1.5">
                   <Label htmlFor="custom-font-size-input" className="sr-only">Введите размер шрифта</Label>
                   <Input id="custom-font-size-input" type="text" className="w-24"
                     value={editorSettings.font.customSize}
@@ -143,7 +143,7 @@ export const EditorSettingsDialog = ({ isOpen, onOpenChange, isMobileMode }: Edi
                 </div>
               )}
             </div>
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               <Label>Цвет</Label>
               <RadioGroup value={editorSettings.font.color} onValueChange={(color: EditorSettings['font']['color']) => handleUpdateFontSetting('color', color)}
                 className="flex flex-wrap gap-4"
@@ -153,7 +153,7 @@ export const EditorSettingsDialog = ({ isOpen, onOpenChange, isMobileMode }: Edi
                 <div className="flex items-center space-x-2"><RadioGroupItem value="black" id="color-black-font" /><Label htmlFor="color-black-font">Черный</Label></div>
               </RadioGroup>
             </div>
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               <Label>Насыщенность</Label>
               <RadioGroup value={editorSettings.font.weight} onValueChange={(weight: EditorSettings['font']['weight']) => handleUpdateFontSetting('weight', weight)}
                 className="flex flex-wrap gap-4"
@@ -165,7 +165,7 @@ export const EditorSettingsDialog = ({ isOpen, onOpenChange, isMobileMode }: Edi
             </div>
           </div>
         </div>
-        <DialogFooter>
+        <DialogFooter className={cn(isMobileMode ? "justify-end" : "justify-center sm:justify-center")}>
           <Button type="button" onClick={() => onOpenChange(false)}>
             Сохранить
           </Button>
